@@ -1,4 +1,4 @@
-import {Box, Button, Container, Flex, FormControl, FormLabel, Input, Link} from "@chakra-ui/react";
+import {Box, Button, Center, Container, Flex, FormControl, FormLabel, Heading, Input, Link} from "@chakra-ui/react";
 import OpenSourceLogo from "../components/OpenSourceLogo";
 import {useEffect, useState} from "react";
 import {ChromePicker} from "react-color";
@@ -52,61 +52,66 @@ const Home = () => {
         }
     })
     return (
-        <Flex maxH={"95vh"} height={"95vh"}>
-            <OpenSourceLogo {...state} />
-            <Box mr={6}>
-                <FormControl>
-                    <FormLabel>FirstLine</FormLabel>
-                    <Input value={state.firstLine} onChange={(e) => setState((currentState) => { return {
-                        ...currentState,
-                        firstLine: e.target.value
-                    }})}/>
-                </FormControl>
-                <FormControl>
-                    <FormLabel>SecondLine</FormLabel>
-                    <Input value={state.secondLine} onChange={(e) => setState((currentState) => { return {
-                        ...currentState,
-                        secondLine: e.target.value
-                    }})}/>
-                </FormControl>
-                <Flex my={2}>
-                    <Box mx={2}>
-                    <ChromePicker color={state.colorOne} onChange={(e) => {
-                        setState((currentState) => { return {
+        <>
+        <Center>
+            <Heading py={2}>Open Source Logo Maker</Heading>
+        </Center>
+            <Flex maxH={"95vh"} height={"92vh"}>
+                <OpenSourceLogo {...state} />
+                <Box mr={6}>
+                    <FormControl>
+                        <FormLabel>FirstLine</FormLabel>
+                        <Input value={state.firstLine} onChange={(e) => setState((currentState) => { return {
                             ...currentState,
-                            colorOne: e.hex
-                        }})
-                    }} />
-                    </Box>
-                    <Box mx={2}>
-                    <ChromePicker color={state.colorTwo} onChange={(e) => {
-                        setState((currentState) => { return {
+                            firstLine: e.target.value
+                        }})}/>
+                    </FormControl>
+                    <FormControl>
+                        <FormLabel>SecondLine</FormLabel>
+                        <Input value={state.secondLine} onChange={(e) => setState((currentState) => { return {
                             ...currentState,
-                            colorTwo: e.hex
-                        }})
-                    }} />
-                    </Box>
-                </Flex>
-                <Flex my={2}>
-                    <Box mx={2}>
-                    <ChromePicker color={state.colorThree} onChange={(e) => {
-                        setState((currentState) => { return {
-                            ...currentState,
-                            colorThree: e.hex
-                        }})
-                    }} />
-                    </Box>
-                </Flex>
-                <Flex my={2}>
-                    <Box mx={2}>
-                        <Link href={png} download={"opensource.png"} disabled={png === ""} >Download PNG</Link>
-                    </Box>
-                    <Box mx={2}>
-                        <Link href={svg} download={"opensource.svg"} disabled={svg === ""} >Download SVG</Link>
-                    </Box>
-                </Flex>
-            </Box>
-        </Flex>
+                            secondLine: e.target.value
+                        }})}/>
+                    </FormControl>
+                    <Flex my={2}>
+                        <Box mx={2}>
+                        <ChromePicker color={state.colorOne} onChange={(e) => {
+                            setState((currentState) => { return {
+                                ...currentState,
+                                colorOne: e.hex
+                            }})
+                        }} />
+                        </Box>
+                        <Box mx={2}>
+                        <ChromePicker color={state.colorTwo} onChange={(e) => {
+                            setState((currentState) => { return {
+                                ...currentState,
+                                colorTwo: e.hex
+                            }})
+                        }} />
+                        </Box>
+                    </Flex>
+                    <Flex my={2}>
+                        <Box mx={2}>
+                        <ChromePicker color={state.colorThree} onChange={(e) => {
+                            setState((currentState) => { return {
+                                ...currentState,
+                                colorThree: e.hex
+                            }})
+                        }} />
+                        </Box>
+                    </Flex>
+                    <Flex my={2}>
+                        <Box mx={2}>
+                            <Link href={png} download={"opensource.png"} disabled={png === ""} >Download PNG</Link>
+                        </Box>
+                        <Box mx={2}>
+                            <Link href={svg} download={"opensource.svg"} disabled={svg === ""} >Download SVG</Link>
+                        </Box>
+                    </Flex>
+                </Box>
+            </Flex>
+        </>
     )
 }
 

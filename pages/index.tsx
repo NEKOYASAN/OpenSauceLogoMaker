@@ -49,7 +49,7 @@ const Home = () => {
             setSvg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgData));
 
         }
-    }, [])
+    }, [state])
     return (
         <>
         <Center>

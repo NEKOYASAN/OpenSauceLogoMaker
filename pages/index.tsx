@@ -2,7 +2,6 @@ import {Box, Button, Center, Container, Flex, FormControl, FormLabel, Heading, I
 import OpenSourceLogo from "../components/OpenSourceLogo";
 import {useEffect, useState} from "react";
 import {ChromePicker} from "react-color";
-import {toBase64} from "next/dist/next-server/lib/to-base-64";
 export interface State {
     firstLine: string,
     secondLine: string,
@@ -25,8 +24,8 @@ const Home = () => {
         if (svg) {
             let svgData = new XMLSerializer().serializeToString(svg);
             const canvas = document.createElement("canvas");
-            canvas.width = svg.height.baseVal.value * 0.52;
-            canvas.height = svg.height.baseVal.value * 0.9;
+            canvas.width = svg.height.baseVal.value * 5.2;
+            canvas.height = svg.height.baseVal.value * 9;
 
             const ctx = canvas.getContext("2d");
             if (ctx) {
@@ -35,7 +34,7 @@ const Home = () => {
                     ctx.drawImage(image, 0, 0);
                     setPng(canvas.toDataURL("image/png"))
                 }
-                image.src = "data:image/svg+xml;charset=utf-8;base64," + toBase64(unescape(encodeURIComponent(svgData)));
+                image.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData);
             }
 
             if(!svgData.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)){
@@ -50,11 +49,11 @@ const Home = () => {
             setSvg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgData));
 
         }
-    })
+    }, [])
     return (
         <>
         <Center>
-            <Heading py={2}>Open Source Logo Maker</Heading>
+            <Heading py={2}>Open Sauce Logo Maker</Heading>
         </Center>
             <Flex maxH={"95vh"} height={"92vh"}>
                 <OpenSourceLogo {...state} />
@@ -103,10 +102,10 @@ const Home = () => {
                     </Flex>
                     <Flex my={2}>
                         <Box mx={2}>
-                            <Link href={png} download={"opensource.png"} disabled={png === ""} >Download PNG</Link>
+                            <Button as={Link} href={png} download={"opensource.png"} isDisabled={png === ""} >Download PNG</Button>
                         </Box>
                         <Box mx={2}>
-                            <Link href={svg} download={"opensource.svg"} disabled={svg === ""} >Download SVG</Link>
+                            <Button as={Link} href={svg} download={"opensource.svg"} isDisabled={svg === ""} >Download SVG</Button>
                         </Box>
                     </Flex>
                 </Box>
